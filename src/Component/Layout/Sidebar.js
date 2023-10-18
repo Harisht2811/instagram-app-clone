@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { auth } from '../../Firebase/Firebaseconfig'
 import { useUserAuth } from '../../Firebase/Userauth'
 import { toast } from 'react-hot-toast'
+import { supabase } from '../../Supabase/Supabase'
 // import { useUserAuth } from '../../Firebase/Userauth'
 
 
@@ -24,7 +25,9 @@ export const Sidebar = () => {
 
   const handleLogout = async() =>{
 
-       await signoutWithEmailAndPassword();
+       
+       const { error } = await supabase.auth.signOut()
+       console.log('signout',error)
        toast.success('User logged out')
        navigate('/')
 
