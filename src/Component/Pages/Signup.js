@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Instatext from '../../Assests/insta-text.png'
 import icon from '../../Assests/fbicon.svg'
 import Underline from '../../Assests/underline.png'
@@ -6,48 +6,47 @@ import { useUserAuth } from '../../Firebase/Userauth'
 import { useNavigate } from 'react-router-dom'
 import Getapp from '../../Assests/getapp.png'
 import { toast } from 'react-hot-toast'
+import { supabase } from '../../Supabase/Supabase'
 
 
 export const Signup = () => {
 
-    const {signUp} = useUserAuth();
+    const { signUp } = useUserAuth();
     const navigate = useNavigate();
     const [isShowHide, setShowHide] = useState(true);
     const [errors, setErrors] = useState('')
     const [passwordType, setPasswordType] = useState('password');
-    const [formValues,setFormValues] = useState({
-        username:'',
-        email:'',
-        password:'',
-        fullname:''
+    const [formValues, setFormValues] = useState({
+        username: '',
+        email: '',
+        password: '',
+        fullname: ''
     })
     const validateErrors = {}
 
 
-    useEffect(()=>{
-        document.title='Sign up • Instagram'
-    })
+    const handleChange = (e) => {
 
-    const handleChange = (e)=>{
-
-        const {value,name} = e.target
+        const { value, name } = e.target
         setFormValues({
-            ...formValues,[name]:value
+            ...formValues, [name]: value
         })
     }
 
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            const response = await signUp(formValues['email'],formValues['password'])
-            console.log(response)
+        try {
+            const { data, error } = await supabase.auth.signUp({
+                email: formValues['email'],
+                password: formValues['password'],
+              })
             navigate("/")
             toast.success('Sign up successfully')
         }
-        catch(err){
+        catch (err) {
             console.log(err)
         }
-        
+
         let regexPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
         let regexEmail = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
         if (formValues['email'] === '') {
@@ -66,7 +65,6 @@ export const Signup = () => {
             validateErrors.password = 'Should include the characters'
         }
         setErrors(validateErrors)
-        console.log(errors)
     }
     const showHidePassword = () => {
 
@@ -80,7 +78,10 @@ export const Signup = () => {
         }
 
     }
-   
+    useEffect(() => {
+        document.title = 'Sign up • Instagram';
+    })
+
     return (
         <div className='px-10 py-4 relative left-[700px]'>
             <div className='w-[350px] h-[630px] border border-[#dad1d1] outline-1  px-2 py-3'>
@@ -94,25 +95,25 @@ export const Signup = () => {
                     <img className='' alt='underline' src={Underline}></img>
                 </div>
 
-                <form className='mt-[8%] relative' onSubmit={(e)=>handleSubmit(e)}>
-                    <input 
-                    name='email' 
-                    className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 outline-0 bg-gray-100' 
-                    placeholder='Email address'
-                    onChange={handleChange}
+                <form className='mt-[8%] relative' onSubmit={(e) => handleSubmit(e)}>
+                    <input
+                        name='email'
+                        className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 outline-0 bg-gray-100'
+                        placeholder='Email address'
+                        onChange={handleChange}
                     ></input>
                     {errors.email && <span className='ml-[35%] w-[100%] text-[14px] text-red-500 text-left'>{errors.email}</span>}
-                    <input 
-                    name='fullname' 
-                    className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 mt-[5%] outline-0  bg-gray-100' 
-                    placeholder='Full Name'
-                    onChange={handleChange}
+                    <input
+                        name='fullname'
+                        className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 mt-[5%] outline-0  bg-gray-100'
+                        placeholder='Full Name'
+                        onChange={handleChange}
                     ></input>
-                    <input 
-                    name='username' 
-                    className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 mt-[5%] outline-0  bg-gray-100' 
-                    placeholder='Username'
-                    onChange={handleChange}
+                    <input
+                        name='username'
+                        className='text-[12px] w-[275px] h-[35px] border border-[#dad1d1] p-2 mt-[5%] outline-0  bg-gray-100'
+                        placeholder='Username'
+                        onChange={handleChange}
                     >
                     </input>
                     <input
@@ -140,7 +141,7 @@ export const Signup = () => {
             <div className='mt-5 w-[350px] '>
                 <p>Get the app</p>
                 <img src={Getapp} alt='get-app' className='ml-[11%]'></img>
-             </div>
+            </div>
         </div>
     )
 }

@@ -4,8 +4,10 @@ import Home from '../../Assests/home-logo.png'
 import Getapp from '../../Assests/getapp.png'
 import { useUserAuth } from '../../Firebase/Userauth'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../Utils/Createslice'
 import { toast } from 'react-hot-toast'
-
+import { supabase } from '../../Supabase/Supabase'
 
 export const Login = () => {
     const [isShowHide, setShowHide] = useState(true);
@@ -16,6 +18,7 @@ export const Login = () => {
     const validateErrors = {}
     const {logIn} = useUserAuth();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = 'Instagram'
@@ -36,11 +39,19 @@ export const Login = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        dispatch(login({
+            email:email,
+        }
+        ))
         try{
-            const response = await logIn(email,password);
-            console.log('After login',response)
-            navigate('/home')
-            toast.success('Welcome to 🥳 Instagram')
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+              })
+              console.log('data',data)
+              console.log('err',error)
+              navigate('/home')
+              toast.success('Welcome to 🥳 Instagram')
         }
         catch(err){
             toast.error('Invalid Email/Password')

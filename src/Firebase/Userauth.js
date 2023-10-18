@@ -19,18 +19,17 @@ export function UserAuthContextProvider({ children }) {
         return createUserWithEmailAndPassword(auth, email, password);
     }
     function logIn(email, password) {
-        console.log("Email:", email);
         return signInWithEmailAndPassword(auth, email, password);
     }
-    function signoutWithEmailAndPassword(email) {
-        return signOut(auth, email);
-
+    function signoutWithEmailAndPassword() {
+        return signOut(auth);
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             setLoading(false);
         });
+        // console.log(auth)
         return () => {
             unsubscribe();
         }

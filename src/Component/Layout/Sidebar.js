@@ -1,13 +1,18 @@
 import React from 'react'
 import { Sidebardata } from '../../Utils/Sidebardata'
 import Instatext from '../../Assests/insta-text.png'
+import Logout from '../../Assests/logout-50.png'
 import { useNavigate, useParams } from 'react-router-dom'
+import { auth } from '../../Firebase/Firebaseconfig'
+import { useUserAuth } from '../../Firebase/Userauth'
+import { toast } from 'react-hot-toast'
 // import { useUserAuth } from '../../Firebase/Userauth'
 
 
 export const Sidebar = () => {
 
   const navigate = useNavigate();
+  const {signoutWithEmailAndPassword} = useUserAuth();
   const params = useParams();
   const { screens } = params
 
@@ -17,23 +22,30 @@ export const Sidebar = () => {
     navigate(route.routeName)
   }
 
+  const handleLogout = async() =>{
+
+       await signoutWithEmailAndPassword();
+       toast.success('User logged out')
+       navigate('/')
+
+  }
 
   return (
     <div>
-      <div className='bg-white w-[300px] h-full border border-r-gray-300  py-2 px-4 relative -ml-2'>
+      <div className='bg-white w-[275px] h-full border border-r-gray-300  py-2 px-4  -ml-2 fixed z-[1]'>
         <div className='text-center ml-4 '>
         </div>
-        <img className=' mt-[4%] ml-[8%] ' src={Instatext} alt='logo-text'></img>
+        <img className=' mt-[4%] ' src={Instatext} alt='logo-text'></img>
         <div className='mt-[15%]'>
           {
             Sidebardata.map((items, index) => {
               return (
                 <div
-                  className="flex mt-[6%] py-2 px-2 w-[250px] rounded-md opacity-[1px]"
+                  className="flex mt-[6%] py-2 px-3 w-[250px] rounded-md opacity-[1px]  hover:bg-gray-100 cursor-pointer"
                   key={index}
                   onClick={() => { selectedPage(items) }}
                 >
-                  <img className='h-[30px] w-[30px]' src={items.routeName.includes(screens) ? items.activeicon : items.icon} alt='side-icons'></img>
+                  <img className='h-[30px] w-[30px]   ' src={items.routeName.includes(screens) ? items.activeicon : items.icon} alt='side-icons'></img>
                   <p
                     className=
                     {`${items.routeName.includes(screens) ||
@@ -47,12 +59,13 @@ export const Sidebar = () => {
             })
           }
         </div>
-        {/* <div
-          className='flex py-2 px-2 absolute bottom-4 w-[250px] hover:bg-gray-600 rounded-md opacity-[1px] cursor-pointer'
+        <div
+          className='flex py-2 px-2 absolute bottom-4 w-[250px] hover:bg-gray-100 rounded-md opacity-[1px] cursor-pointer'
+          onClick={handleLogout}
         >
-          <img className='h-[30px] w-[20px]' src={Logo} alt='side-icons'></img>
-          <div className='text-white text-[18px] font-Poppins font-[500] ml-[10%] cursor-pointer'>Log out</div>
-        </div> */}
+          <img className='h-[30px] w-[30px]' src={Logout} alt='side-icons'></img>
+          <div className='text-gray-900 text-[18px] ml-[10%] cursor-pointerr' >Log out</div>
+        </div>
       </div>
     </div>
   )
