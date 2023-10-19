@@ -3,17 +3,13 @@ import { Sidebardata } from '../../Utils/Sidebardata'
 import Instatext from '../../Assests/insta-text.png'
 import Logout from '../../Assests/logout-50.png'
 import { useNavigate, useParams } from 'react-router-dom'
-import { auth } from '../../Firebase/Firebaseconfig'
-import { useUserAuth } from '../../Firebase/Userauth'
 import { toast } from 'react-hot-toast'
 import { supabase } from '../../Supabase/Supabase'
-// import { useUserAuth } from '../../Firebase/Userauth'
 
 
 export const Sidebar = () => {
 
   const navigate = useNavigate();
-  const {signoutWithEmailAndPassword} = useUserAuth();
   const params = useParams();
   const { screens } = params
 

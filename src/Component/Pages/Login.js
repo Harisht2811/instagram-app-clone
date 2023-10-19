@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Instatext from '../../Assests/insta-text.png'
 import Home from '../../Assests/home-logo.png'
 import Getapp from '../../Assests/getapp.png'
-import { useUserAuth } from '../../Firebase/Userauth'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../Utils/Createslice'
@@ -16,12 +15,12 @@ export const Login = () => {
     const [passwordType, setPasswordType] = useState('password');
     const [errors, setErrors] = useState('')
     const validateErrors = {}
-    const {logIn} = useUserAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
         document.title = 'Instagram'
+
     })
 
 
@@ -43,20 +42,7 @@ export const Login = () => {
             email:email,
         }
         ))
-        try{
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-              })
-              console.log('data',data)
-              console.log('err',error)
-              navigate('/home')
-              toast.success('Welcome to 🥳 Instagram')
-        }
-        catch(err){
-            toast.error('Invalid Email/Password')
-            console.log(err.message)
-        }
+      
         let regexPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
         let regexEmail = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
         if (email === '') {
@@ -75,6 +61,20 @@ export const Login = () => {
             validateErrors.password = 'Should include the characters'
         }
         setErrors(validateErrors)
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+              })
+              console.log('data',data)
+              console.log('err',error)
+
+            if(error){
+                console.log(error)
+            }else{
+                navigate('/home')
+                toast.success('Welcome to 🥳 Instagram')
+            }  
+            
     }
     return (
         <div>

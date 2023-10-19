@@ -13,8 +13,7 @@ function App() {
       <BrowserRouter>
     <UserAuthContextProvider>
         <Routes>
-          <Route exact path='/' element={<Login />}></Route>
-          <Route exact path='/signup' element={<Signup />}></Route>
+          z
           <Route exact path='/:screens' element={<Mainpage />}></Route>
         </Routes>
     </UserAuthContextProvider>

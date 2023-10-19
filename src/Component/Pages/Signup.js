@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Getapp from '../../Assests/getapp.png'
 import { toast } from 'react-hot-toast'
 import { supabase } from '../../Supabase/Supabase'
+import { CreateUser } from '../../Functions/Supafunctions'
 
 
 export const Signup = () => {
@@ -35,18 +36,6 @@ export const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const { data, error } = await supabase.auth.signUp({
-                email: formValues['email'],
-                password: formValues['password'],
-              })
-            navigate("/")
-            toast.success('Sign up successfully')
-        }
-        catch (err) {
-            console.log(err)
-        }
-
         let regexPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
         let regexEmail = /^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/;
         if (formValues['email'] === '') {
@@ -65,6 +54,20 @@ export const Signup = () => {
             validateErrors.password = 'Should include the characters'
         }
         setErrors(validateErrors)
+        const { data, error } = await supabase.auth.signUp({
+            email: formValues['email'],
+            password: formValues['password'],
+        })
+        
+        if(error){
+            console.log(error)
+        }
+        else{
+            console.log(data)
+            navigate("/")
+            toast.success('Sign up successfully')
+        }
+        await CreateUser(formValues);
     }
     const showHidePassword = () => {
 
@@ -84,7 +87,9 @@ export const Signup = () => {
 
     return (
         <div className='px-10 py-4 relative left-[700px]'>
-            <div className='w-[350px] h-[630px] border border-[#dad1d1] outline-1  px-2 py-3'>
+                       
+
+            <div  className={`${errors.email ? 'w-[350px] h-[700px] ' : 'w-[350px] h-[630px] '}  border border-[#dad1d1] outline-1  px-2 py-3`}>
                 <img className='ml-[18%] mt-[5%]' src={Instatext} alt='text-logo'></img>
                 <p className='text-center ml-9 w-[80%] text-gray-500 font-bold'>Sign up to see photos and videos from your friends.</p>
                 <button className='relative mt-[5%] h-[38px] w-[275px] bg-blue-500 text-white rounded-lg hover:bg-blue-700'><img className='absolute left-8' alt='fb-icon' src={icon}></img>Log in with facebook</button>
