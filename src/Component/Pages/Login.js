@@ -65,8 +65,8 @@ export const Login = () => {
                 email: email,
                 password: password,
               })
-              console.log('data',data)
-              console.log('err',error)
+             window.sessionStorage.setItem("isLoggedin",true)
+
 
             if(error){
                 console.log(error)
@@ -107,7 +107,7 @@ export const Login = () => {
                         </div>
                     </form>
                     <div className='w-[350px] h-[60px] border border-[#dad1d1] outline-1 mt-[4%] px-[6%] py-4'>
-                        <p>Don't have an account ? <a href='/signup' className='cursor-pointer text-blue-400'>Sign up</a></p>
+                        <p>Don't have an account ? <a href='/signup' className='cursor-pointer text-blue-400 font-bold'>Sign up</a></p>
                     </div>
                     <div className='mt-4'>
                         <p>Get the app</p>

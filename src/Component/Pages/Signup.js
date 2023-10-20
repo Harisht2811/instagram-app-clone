@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Instatext from '../../Assests/insta-text.png'
 import icon from '../../Assests/fbicon.svg'
 import Underline from '../../Assests/underline.png'
-import { useUserAuth } from '../../Firebase/Userauth'
 import { useNavigate } from 'react-router-dom'
 import Getapp from '../../Assests/getapp.png'
 import { toast } from 'react-hot-toast'
@@ -12,7 +11,6 @@ import { CreateUser } from '../../Functions/Supafunctions'
 
 export const Signup = () => {
 
-    const { signUp } = useUserAuth();
     const navigate = useNavigate();
     const [isShowHide, setShowHide] = useState(true);
     const [errors, setErrors] = useState('')
@@ -58,11 +56,11 @@ export const Signup = () => {
             email: formValues['email'],
             password: formValues['password'],
         })
-        
-        if(error){
+
+        if (error) {
             console.log(error)
         }
-        else{
+        else {
             console.log(data)
             navigate("/")
             toast.success('Sign up successfully')
@@ -87,9 +85,9 @@ export const Signup = () => {
 
     return (
         <div className='px-10 py-4 relative left-[700px]'>
-                       
 
-            <div  className={`${errors.email ? 'w-[350px] h-[700px] ' : 'w-[350px] h-[630px] '}  border border-[#dad1d1] outline-1  px-2 py-3`}>
+
+            <div className={`${errors.email ? 'w-[350px] h-[700px] ' : 'w-[350px] h-[630px] '}  border border-[#dad1d1] outline-1  px-2 py-3`}>
                 <img className='ml-[18%] mt-[5%]' src={Instatext} alt='text-logo'></img>
                 <p className='text-center ml-9 w-[80%] text-gray-500 font-bold'>Sign up to see photos and videos from your friends.</p>
                 <button className='relative mt-[5%] h-[38px] w-[275px] bg-blue-500 text-white rounded-lg hover:bg-blue-700'><img className='absolute left-8' alt='fb-icon' src={icon}></img>Log in with facebook</button>
@@ -141,7 +139,7 @@ export const Signup = () => {
                 </form>
             </div>
             <div className='w-[350px] h-[60px] border border-[#dad1d1] outline-1 mt-[1%] px-[1%] py-4'>
-                <p>Have an account ? <a href='/' className='cursor-pointer  text-blue-400'>Log in</a></p>
+                <p>Have an account ? <a href='/' className='cursor-pointer  text-blue-400 font-bold'>Log in</a></p>
             </div>
             <div className='mt-5 w-[350px] '>
                 <p>Get the app</p>

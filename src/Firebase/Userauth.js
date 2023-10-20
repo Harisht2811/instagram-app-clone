@@ -1,40 +1,29 @@
 import { createContext, useEffect, useState, useContext } from 'react';
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from 'firebase/auth';
-import { auth } from './Firebaseconfig'
+import { supabase } from '../Supabase/Supabase';
 
 
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
     const [user, setUser] = useState("");
-    const [loading, setLoading] = useState("");
+    const [, setLoading] = useState(true);
 
-    function signUp(email, password) {
-        console.log(email, password)
-        return createUserWithEmailAndPassword(auth, email, password);
-    }
-    function logIn(email, password) {
-        return signInWithEmailAndPassword(auth, email, password);
-    }
-    function signoutWithEmailAndPassword() {
-        return signOut(auth);
-    }
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser)
-            setLoading(false);
-        });
+
+        const { data } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log(session)
+            if(event === 'SIGNED_IN'){
+                setUser(session.user)
+                setLoading(false);
+            }
+          
+        })
         // console.log(auth)
         return () => {
-            unsubscribe();
-        }
+            data.subscription.unsubscribe();
+        };
     }, []);
-    return <userAuthContext.Provider value={{ user, signUp, logIn, signoutWithEmailAndPassword }}>{!loading && children}</userAuthContext.Provider>
+    return <userAuthContext.Provider value={{ user }}>{children}</userAuthContext.Provider>
 }
 export function useUserAuth() {
 
