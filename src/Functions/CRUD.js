@@ -1,12 +1,12 @@
 import { supabase } from "../Supabase/Supabase";
 
 
-export const FetchData = (table, requiredFields) => {
-    return supabase.from(table).select(requiredFields.length ?requiredFields.join(","): "*");
+export const FetchData = (table) => {
+    return supabase.from(table).select();
 }
 
-export const FetchDataById = (table, id) => {
-    return FetchData(table).eq("id", id);
+export const FetchDataByEmail = (table, email) => {
+    return FetchData(table).eq("email", email);
 }
 
 export const InsertData = async (table, data) => {

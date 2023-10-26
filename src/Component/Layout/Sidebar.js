@@ -25,6 +25,7 @@ export const Sidebar = () => {
        const { error } = await supabase.auth.signOut()
        console.log('signout',error)
        sessionStorage.removeItem('isLoggedin')
+       sessionStorage.removeItem('email')
        toast.success('User logged out')
        navigate('/')
 

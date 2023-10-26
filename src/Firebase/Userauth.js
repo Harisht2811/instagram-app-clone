@@ -11,7 +11,6 @@ export function UserAuthContextProvider({ children }) {
     useEffect(() => {
 
         const { data } = supabase.auth.onAuthStateChange((event, session) => {
-            console.log(session)
             if(event === 'SIGNED_IN'){
                 setUser(session.user)
                 setLoading(false);

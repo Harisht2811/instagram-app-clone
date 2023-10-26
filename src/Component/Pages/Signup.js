@@ -8,7 +8,6 @@ import { toast } from 'react-hot-toast'
 import { supabase } from '../../Supabase/Supabase'
 import { CreateUser } from '../../Functions/Supafunctions'
 
-
 export const Signup = () => {
 
     const navigate = useNavigate();

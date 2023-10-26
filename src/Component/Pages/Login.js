@@ -61,16 +61,18 @@ export const Login = () => {
             validateErrors.password = 'Should include the characters'
         }
         setErrors(validateErrors)
+            window.sessionStorage.setItem("isLoggedin",true)
+            window.sessionStorage.setItem("email",email)
+
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password,
               })
-             window.sessionStorage.setItem("isLoggedin",true)
-
-
             if(error){
                 console.log(error)
+                toast.error('Invalid username / password')
             }else{
+                console.log(data,"Login data")
                 navigate('/home')
                 toast.success('Welcome to 🥳 Instagram')
             }  

@@ -1,3 +1,4 @@
 export const TableNames = {
-    user:'user'
+    user:'user',
+    user_post:'user_post'
 }

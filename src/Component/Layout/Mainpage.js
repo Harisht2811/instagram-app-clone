@@ -8,7 +8,7 @@ export const Mainpage = () => {
 
     <div className="flex">
       <Sidebar />
-      <div className="flex flex-col w-full bg-[#F9FCFF] relative">
+      <div className="flex flex-col w-full  relative">
         <Activepages />
       </div>
     </div>

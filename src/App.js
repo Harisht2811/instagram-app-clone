@@ -8,18 +8,15 @@ import { UserAuthContextProvider } from './Firebase/Userauth';
 import ProtectedRoute from './Utils/Protectedroute';
 
 function App() {
-  const authenticatedUser = window.sessionStorage.getItem('isLoggedin');
-  console.log(authenticatedUser)
+
   return (
     <div className="App">
       <Toaster />
       <BrowserRouter>
         <UserAuthContextProvider>
           <Routes>
-            <Route element={<ProtectedRoute isLoggedin ={authenticatedUser} />}>
-              <Route exact path='/:screens' element={authenticatedUser ?<Mainpage />:''} />
-              {/* <Route exact path='/home' element={<Home />}></Route> */}
-
+            <Route element={<ProtectedRoute />}>
+              <Route exact path='/:screens' element={<Mainpage />} />
             </Route>
             <Route exact path='/' element={<Login />}></Route>
             <Route exact path='/signup' element={<Signup />}></Route>
