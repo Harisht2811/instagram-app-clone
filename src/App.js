@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { Login } from './Component/Pages/Login';
 import { Signup } from './Component/Pages/Signup';
 import { Mainpage } from './Component/Layout/Mainpage';
+import { Successpost } from './Component/Pages/Successpost';
 import { UserAuthContextProvider } from './Firebase/Userauth';
 import ProtectedRoute from './Utils/Protectedroute';
 
@@ -20,6 +21,7 @@ function App() {
             </Route>
             <Route exact path='/' element={<Login />}></Route>
             <Route exact path='/signup' element={<Signup />}></Route>
+            <Route exact path='/success' element={<Successpost />}></Route>
 
           </Routes>
         </UserAuthContextProvider>

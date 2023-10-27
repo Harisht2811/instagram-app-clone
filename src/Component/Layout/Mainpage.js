@@ -6,9 +6,9 @@ export const Mainpage = () => {
   return (
 
 
-    <div className="flex">
+    <div className="flex ">
       <Sidebar />
-      <div className="flex flex-col w-full  relative">
+      <div className='w-full' >
         <Activepages />
       </div>
     </div>

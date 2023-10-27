@@ -89,7 +89,7 @@ export const Signup = () => {
             <div className={`${errors.email ? 'w-[350px] h-[700px] ' : 'w-[350px] h-[630px] '}  border border-[#dad1d1] outline-1  px-2 py-3`}>
                 <img className='ml-[18%] mt-[5%]' src={Instatext} alt='text-logo'></img>
                 <p className='text-center ml-9 w-[80%] text-gray-500 font-bold'>Sign up to see photos and videos from your friends.</p>
-                <button className='relative mt-[5%] h-[38px] w-[275px] bg-blue-500 text-white rounded-lg hover:bg-blue-700'><img className='absolute left-8' alt='fb-icon' src={icon}></img>Log in with facebook</button>
+                <button className='relative mt-[5%] h-[38px] w-[275px] bg-blue-500 text-white rounded-lg hover:bg-blue-700 text-[14px] font-bold'><img className='absolute left-8 h-[24px] w-[24px]' alt='fb-icon' src={icon}></img>&nbsp;Log in with facebook</button>
 
                 <div className='flex mt-[5%] ml-[12%]'>
                     <img className='' alt='underline' src={Underline}></img>
@@ -134,11 +134,11 @@ export const Signup = () => {
                         {isShowHide ? 'Show' : 'Hide'}</p>
                     <p className='text-[11px] mt-2 ml-8 text-gray-500 w-[80%] leading-4'>People who use our service may have uploaded your contact information to Instagram. Learn more</p>
                     <p className='text-[11px] mt-2 ml-8 text-gray-500 w-[80%] leading-4'>By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.</p>
-                    <button type='submit' className='mt-[5%] h-[35px] w-[275px] bg-blue-500 text-white rounded-lg opacity-70'>Sign up</button>
+                    <button type='submit' className='mt-[5%] h-[35px] w-[275px] text-[14px] bg-blue-500 text-white rounded-lg opacity-70 font-bold'>Sign up</button>
                 </form>
             </div>
             <div className='w-[350px] h-[60px] border border-[#dad1d1] outline-1 mt-[1%] px-[1%] py-4'>
-                <p>Have an account ? <a href='/' className='cursor-pointer  text-blue-400 font-bold'>Log in</a></p>
+                <p>Have an account ? <a href='/' className='cursor-pointer  text-blue-400 text-[14px]'>Log in</a></p>
             </div>
             <div className='mt-5 w-[350px] '>
                 <p>Get the app</p>
