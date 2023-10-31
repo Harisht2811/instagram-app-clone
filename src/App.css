@@ -37,3 +37,39 @@
     transform: rotate(360deg);
   }
 }
+.ant-tabs-nav-list{
+  margin: 0 0 0 45%;
+}
+:where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-top >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-top >div>.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >div>.ant-tabs-nav::before {
+  position: absolute;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid darkgray;
+  content: '';
+  width: 800px;
+}
+.ant-tabs-tab-btn{
+  font-size: 12px;
+  color: grey;
+}
+
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: black;
+    text-shadow: 0 0 0.25px currentcolor;
+}
+:where(.css-dev-only-do-not-override-qgg3xn).ant-tabs .ant-tabs-ink-bar {
+  position: absolute;
+  background:black;
+  pointer-events: none;
+}
+
+
+:where(.css-dev-only-do-not-override-qgg3xn).ant-tabs .ant-tabs-content-holder {
+    flex: auto;
+    min-width: 0;
+    min-height: 0;
+}
+:where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >.ant-tabs-content-holder, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >div>.ant-tabs-content-holder {
+    order: 1;
+}

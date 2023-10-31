@@ -1,5 +1,5 @@
 import { TableNames } from "../Utils/Config/Table"
-import { FetchData, FetchDataByEmail, InsertData } from "./CRUD"
+import { FetchData, FetchDataByEmail, InsertData ,UpdateData,FetchDataNotByUsername ,FetchUserImage } from "./CRUD"
 
 export const CreateUser = async(userData) =>{
     try{
@@ -27,6 +27,18 @@ export const GetUser = async()=>{
         console.log(err)
     }
 }
+export const GetUserPost = async(name)=>{
+    try{
+        const {data,error} = await FetchDataNotByUsername(TableNames.user_post,name)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 
 export const GetUserByEmail = async(email)=>{
     try{
@@ -35,6 +47,19 @@ export const GetUserByEmail = async(email)=>{
             throw error;
         }
         return userByEmail;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+export const GetUserProfile = async(name)=>{
+    try{
+        const {data,error} = await FetchUserImage(TableNames.user,name)
+        if(error){
+            throw error;
+        }
+        return data;
     }
     catch(err){
         console.log(err)
@@ -54,3 +79,15 @@ export const CreatePost = async(postData) =>{
     }
 }
 
+export const UpdateProfilePhoto = async(imagedata,conditionValue) =>{
+    try{
+        const {data,error} = await UpdateData(TableNames.user,{profileimage:imagedata},conditionValue)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}

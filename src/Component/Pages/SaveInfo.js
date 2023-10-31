@@ -12,7 +12,7 @@ export const SaveInfo = () => {
     }
 
     return (
-        <div className='ml-[650px] mt-[30%]'>
+        <div className='ml-[650px] mt-[20%]'>
             <div className='h-[300px] w-[350px] border border-gray-300 p-2'>
                 <img className='ml-[35%]' alt='save-login' src={Saveinformation}></img>
                 <p className='text-black font-bold text-[14px]'>Save your login information?</p>

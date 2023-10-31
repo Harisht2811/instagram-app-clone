@@ -8,15 +8,24 @@ export const FetchData = (table) => {
 export const FetchDataByEmail = (table, email) => {
     return FetchData(table).eq("email", email);
 }
+export const FetchDataNotByUsername = (table, username) => {
+    return FetchData(table).neq("username", username);
+}
+
+export const FetchDataByUsername = (table, username) => {
+    return FetchData(table).eq("username", username);
+}
+
+export const FetchUserImage = (table, username) => {
+    return FetchData(table).eq("username", username).select();
+}
 
 export const InsertData = async (table, data) => {
-    console.log(data,table)
     return await supabase.from(table).insert(data).select();
 }
 
 export const UpdateData = async (table, data, condition) => {
-    const { conditionKey, conditionValue} = condition;
-    return await supabase.from(table).update(data).eq(conditionKey, conditionValue).select();
+    return await supabase.from(table).update(data).eq("email",condition).select();
 }
 
 export const DeleteData = async (table, condition) => {

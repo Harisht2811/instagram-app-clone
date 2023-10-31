@@ -83,7 +83,7 @@ export const Signup = () => {
     })
 
     return (
-        <div className='px-10 py-4 relative left-[700px]'>
+        <div className='px-10 py-4 relative left-[700px] '>
 
 
             <div className={`${errors.email ? 'w-[350px] h-[700px] ' : 'w-[350px] h-[630px] '}  border border-[#dad1d1] outline-1  px-2 py-3`}>

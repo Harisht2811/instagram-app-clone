@@ -154,7 +154,7 @@ export const Create = () => {
                                     <img src={Upload} alt='upload' className='ml-4'></img>
                                     <p className=' text-[22px] mt-3 -ml-[45%]'>Drag photos and videos here</p>
                                     <div className='flex justify-between items-center  mt-[6%] cursor-pointer   text-white -ml-[13%]' >
-                                        <label htmlFor="files" className="text-white text-[15px] font-bold cursor-pointer p-2 rounded-md   hover:bg-blue-600  bg-blue-400 h-[40px] w-[230px]">Select from computer
+                                        <label htmlFor="files"  className="text-white text-[15px] font-bold cursor-pointer p-2 rounded-md   hover:bg-blue-600  bg-blue-400 h-[40px] w-[230px]">Select from computer
                                             <input id="files" accept='image/*,video/mp4,video/x-m4v,video/*' type="file" className=' opacity-0 hidden ' onChange={handleChange} />
                                         </label>
                                     </div>

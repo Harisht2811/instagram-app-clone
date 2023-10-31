@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { supabase } from '../../Supabase/Supabase'
 
-
 export const Sidebar = () => {
 
   const navigate = useNavigate();

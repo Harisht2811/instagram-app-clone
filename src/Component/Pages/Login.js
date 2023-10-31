@@ -93,7 +93,7 @@ export const Login = () => {
     return (
         <div>
             <div className='flex  px-[10%] py-[5%] w-[100%]'>
-                <img className=' mt-[2%] ml-[21%]' src={Home} alt='home-logo'></img>
+                <img className=' mt-[2%] ml-[21%] ' src={Home} alt='home-logo'></img>
                 <div>
                     <form onSubmit={(e) => handleSubmit(e)} className='w-[350px] h-[420px] border border-[#dad1d1] outline-1 mt-[15%] px-2 py-3'>
                         <img className='ml-[18%] mt-[5%]' src={Instatext} alt='logo-text'></img>
