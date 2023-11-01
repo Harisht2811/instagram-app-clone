@@ -38,7 +38,7 @@
   }
 }
 .ant-tabs-nav-list{
-  margin: 0 0 0 45%;
+  margin: 0 0 0 20%;
 }
 :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-top >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-top >div>.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >div>.ant-tabs-nav::before {
   position: absolute;
@@ -72,4 +72,19 @@
 }
 :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >.ant-tabs-content-holder, :where(.css-dev-only-do-not-override-qgg3xn).ant-tabs-bottom >div>.ant-tabs-content-holder {
     order: 1;
+}
+.ant-tabs-tab {
+  flex-grow: 1;
+  margin-right: 0px;
+  width: 80%;
+  text-align: center;
+}
+
+
+.ant-tabs {
+    position: fixed;
+    width: 70%;
+}
+ .ant-tabs-content {
+  width: 70%;
 }

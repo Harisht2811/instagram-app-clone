@@ -6,6 +6,7 @@ import { Tabs } from 'antd';
 import { storage } from '../../Firebase/Firebaseconfig'
 import { GetUserByEmail, UpdateProfilePhoto } from '../../Functions/Supafunctions'
 import { Profiledata } from '../../Utils/Profiledata';
+import Setting from "../../Assests/settings.png"
 
 export const Profile = () => {
 
@@ -52,7 +53,6 @@ export const Profile = () => {
   }
 
   const handleChangeTab =(key)=>{
-    console.log(key)
     setActiveTab(key)
   }
 
@@ -75,7 +75,8 @@ export const Profile = () => {
               <p className='text-[20px] font-medium'>{username}</p>
               <button className='h-[30px] w-[110px] hover:bg-gray-200 bg-gray-100 rounded-md text-black text-[14px] font-semibold ml-5'>Edit Profile</button>
               <button className='h-[30px] w-[110px] hover:bg-gray-200 bg-gray-100 rounded-md text-black text-[14px] font-semibold ml-5'>View Archive</button>
-            </div>
+              <img src={Setting} className='h-[35px] w-[40px] ml-2 cursor-pointer'></img>
+             </div>
             <div className='flex mt-5'>
               <p className='text-[16px] font-semibold'>0<span className='font-normal text-[14px] ml-1'>Posts</span> </p>
               <p className='text-[16px] font-semibold ml-8'>123 <span className='font-normal text-[14px] '>followers</span></p>
@@ -84,7 +85,7 @@ export const Profile = () => {
           </div>
         </div>
 
-        <div className='mt-[40%] ml-5'>
+        <div className='mt-[20%] ml-5'>
           <Tabs
             tabPosition={tabPosition}
             onChange={handleChangeTab}
@@ -98,7 +99,7 @@ export const Profile = () => {
                   </span>
                 ),
                 key: id,
-                // children: `${data?.children}`
+                children:data.children
               };
             })}>
 

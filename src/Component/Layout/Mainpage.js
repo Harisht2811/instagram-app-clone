@@ -8,7 +8,7 @@ export const Mainpage = () => {
 
     <div className="flex ">
       <Sidebar />
-      <div className='w-full' >
+      <div className='w-full ' >
         <Activepages />
       </div>
     </div>

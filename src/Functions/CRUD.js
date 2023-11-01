@@ -27,6 +27,9 @@ export const InsertData = async (table, data) => {
 export const UpdateData = async (table, data, condition) => {
     return await supabase.from(table).update(data).eq("email",condition).select();
 }
+export const UpdateDataLikes = async (table, data, condition) => {
+    return await supabase.from(table).update(data).eq("id",condition).select();
+}
 
 export const DeleteData = async (table, condition) => {
     const { conditionKey, conditionValue} = condition;

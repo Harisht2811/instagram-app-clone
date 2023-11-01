@@ -10,7 +10,7 @@ import { v4 } from "uuid";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { CreatePost, GetUserByEmail } from '../../Functions/Supafunctions'
 import { Successpost } from './Successpost'
-
+import User from '../../Assests/user.png'
 
 export const Create = () => {
 
@@ -128,8 +128,12 @@ export const Create = () => {
                                         <div className='bg-white rounded-r-lg shadow-md  w-[330px] h-[800px] py-5'>
                                             <div className=' border border-t-0 border-b-gray-300 border-r-0 border-l-0 py-4'>
                                             </div>
+                                            <div className='flex p-4'>
+                                                <img className='h-[25px] w-[25px] rounded-full ' src={currentUser[0].profileimage!==null?currentUser[0].profileimage:User}></img>
+                                                <p className='text-left text-[14px] font-semibold ml-2 mt-1'>{currentUser[0].username}</p>
+                                            </div>
                                             <div>
-    
+                                                 
                                                 <textarea
                                                     className='w-[330px] h-[300px] p-3 outline-none border border-gray-300 border-t-0'
                                                     placeholder='Write a caption...'

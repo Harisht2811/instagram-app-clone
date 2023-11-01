@@ -17,7 +17,7 @@ const Activepages = () => {
     create:<Create/>
   }
   return (
-    <div className='ml-[200px]'> 
+    <div className='ml-[200px]' > 
      {activeRoutes[activeScreens] || <Home/>}
     </div>
   )

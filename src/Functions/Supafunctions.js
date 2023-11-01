@@ -1,5 +1,5 @@
 import { TableNames } from "../Utils/Config/Table"
-import { FetchData, FetchDataByEmail, InsertData ,UpdateData,FetchDataNotByUsername ,FetchUserImage } from "./CRUD"
+import { FetchData, FetchDataByEmail, InsertData ,UpdateData,FetchDataNotByUsername,FetchDataByUsername ,FetchUserImage ,UpdateDataLikes } from "./CRUD"
 
 export const CreateUser = async(userData) =>{
     try{
@@ -27,7 +27,7 @@ export const GetUser = async()=>{
         console.log(err)
     }
 }
-export const GetUserPost = async(name)=>{
+export const GetNotUserPost = async(name)=>{
     try{
         const {data,error} = await FetchDataNotByUsername(TableNames.user_post,name)
         if(error){
@@ -39,7 +39,18 @@ export const GetUserPost = async(name)=>{
         console.log(err)
     }
 }
-
+export const GetUserPost = async(name)=>{
+    try{
+        const {data,error} = await FetchDataByUsername(TableNames.user_post,name)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 export const GetUserByEmail = async(email)=>{
     try{
         const {data:userByEmail,error} = await FetchDataByEmail(TableNames.user,email)
@@ -82,6 +93,21 @@ export const CreatePost = async(postData) =>{
 export const UpdateProfilePhoto = async(imagedata,conditionValue) =>{
     try{
         const {data,error} = await UpdateData(TableNames.user,{profileimage:imagedata},conditionValue)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+
+export const UpdateLikes = async(likeData,conditionValue) =>{
+    console.log(conditionValue)
+    try{
+        const {data,error} = await UpdateDataLikes(TableNames.user_post,{likes:likeData},conditionValue)
         if(error){
             throw error;
         }
