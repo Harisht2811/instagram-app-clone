@@ -32,8 +32,7 @@ export const UpdateDataLikes = async (table, data, condition) => {
 }
 
 export const DeleteData = async (table, condition) => {
-    const { conditionKey, conditionValue} = condition;
-    return await supabase.from(table).delete().eq(conditionKey, conditionValue);
+    return await supabase.from(table).delete().eq("id", condition);
 }
 
 export const BulkDelete = async (table, ids) => {

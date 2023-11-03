@@ -1,5 +1,5 @@
 import { TableNames } from "../Utils/Config/Table"
-import { FetchData, FetchDataByEmail, InsertData ,UpdateData,FetchDataNotByUsername,FetchDataByUsername ,FetchUserImage ,UpdateDataLikes } from "./CRUD"
+import { FetchData, FetchDataByEmail, InsertData ,UpdateData,FetchDataNotByUsername,FetchDataByUsername ,FetchUserImage ,UpdateDataLikes,DeleteData } from "./CRUD"
 
 export const CreateUser = async(userData) =>{
     try{
@@ -111,6 +111,20 @@ export const UpdateLikes = async(likeData,conditionValue) =>{
         if(error){
             throw error;
         }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+export const DeletePost = async(conditionValue) =>{
+    try{
+        const {data,error} = await DeleteData(TableNames.user_post,conditionValue)
+        if(error){
+            throw error;
+        }
+        console.log(data,"sasd")
         return data;
     }
     catch(err){

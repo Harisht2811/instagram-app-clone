@@ -84,7 +84,7 @@ export const Login = () => {
         } else {
             console.log(data, "Login data")
             navigate('/savelogin')
-            toast.success('Welcome to 🥳 Instagram')
+            toast.success('Welcome to Instagram 🥳')
         }
 
     }
