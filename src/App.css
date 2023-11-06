@@ -88,3 +88,34 @@
  .ant-tabs-content {
   width: 70%;
 }
+
+
+.react-input-emoji--input {
+    font-weight: 400;
+    max-height: 400px !important;
+    min-height:200px !important;
+    outline: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    z-index: 1;
+    width: 100%;
+    user-select: text;
+    padding: 1% 2%;
+    text-align: left;
+}
+.react-input-emoji--placeholder {
+  color: #a0a0a0;
+  pointer-events: none;
+  position: absolute;
+  user-select: none;
+  z-index: 2;
+  left: 16px;
+  top: -145px !important;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 22px);
+}
