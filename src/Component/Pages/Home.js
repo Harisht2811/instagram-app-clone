@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetNotUserPost, GetUserByEmail, GetUser, UpdateLikes } from '../../Functions/Supafunctions'
+import { GetNotUserPost, GetUserByEmail, GetUser } from '../../Functions/Supafunctions'
 import User from '../../Assests/user.png'
 import Threedots from '../../Assests/three-dots.png'
 import Heart from '../../Assests/heart-50.png'
@@ -49,7 +49,6 @@ export const Home = () => {
     }
     setIsLiked(newLike)
     setLikes([...likes, newLike])
-    const like = await UpdateLikes(newLike, postdata.id);
   }
 
   const unLikePost = (e) => {
@@ -90,6 +89,7 @@ export const Home = () => {
                   </div>
                 )
               }
+              return null;
             })
           }
 
@@ -199,7 +199,7 @@ export const Home = () => {
         <div className='block mt-8 '>
           {
             Profile.map((follwusers,ind)=>{
-              if(follwusers.username!=currentUser){
+              if(follwusers.username!==currentUser){
                 return(
                   <div className='flex w-[100%]  mb-4'>
                       <div className='flex w-[50%]'>
@@ -216,6 +216,7 @@ export const Home = () => {
                   </div>
                 )
               }
+              return null;
             })
           }
         </div>

@@ -30,7 +30,7 @@ export const Mypost = () => {
       setUserPosts(userPostData)
     })();
 
-  }, []);
+  }, [email]);
 
 const showDeleteConfirm = (postid) => {
  confirm({
@@ -58,7 +58,7 @@ const showDeleteConfirm = (postid) => {
               userPosts.map((post, index) => {
                 return (
                   <>
-                    <img key={index} src={post.imageurl} className='w-[300px] h-[300px] ml-2 mb-[1%] cursor-pointer hover:opacity-50' onClick={()=>showDeleteConfirm(post.id)}></img>
+                    <img key={index} src={post.imageurl} className='w-[300px] h-[300px] ml-2 mb-[1%] cursor-pointer hover:opacity-50' onClick={()=>showDeleteConfirm(post.id)} alt='post'></img>
                   </>
                 )
               })

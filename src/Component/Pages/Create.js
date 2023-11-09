@@ -19,7 +19,6 @@ export const Create = () => {
     const [openComment, setOpenComment] = useState(false);
     const [post, setPost] = useState(true);
     const [imageList, setImageList] = useState();
-    const [caption, setCaption] = useState('');
     const [ text, setText ] = useState('')
     const [currentUser, setCurrentuser] = useState('');
 
@@ -131,7 +130,7 @@ export const Create = () => {
                                                     <div className=' border border-t-0 border-b-gray-300 border-r-0 border-l-0 py-4'>
                                                     </div>
                                                     <div className='flex p-4'>
-                                                        <img className='h-[25px] w-[25px] rounded-full ' src={currentUser[0].profileimage !== null ? currentUser[0].profileimage : User}></img>
+                                                        <img className='h-[25px] w-[25px] rounded-full ' src={currentUser[0].profileimage !== null ? currentUser[0].profileimage : User} alt='profile'></img>
                                                         <p className='text-left text-[14px] font-semibold ml-2 mt-1'>{currentUser[0].username}</p>
                                                     </div>
                                                     <div>

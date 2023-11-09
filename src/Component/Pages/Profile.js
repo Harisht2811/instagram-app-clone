@@ -126,7 +126,7 @@ export const Profile = () => {
               <p className='text-[20px] font-medium'>{username}</p>
               <button className='h-[30px] w-[110px] hover:bg-gray-200 bg-gray-100 rounded-md text-black text-[14px] font-semibold ml-5'>Edit Profile</button>
               <button className='h-[30px] w-[110px] hover:bg-gray-200 bg-gray-100 rounded-md text-black text-[14px] font-semibold ml-5'>View Archive</button>
-              <img src={Setting} className='h-[35px] w-[40px] ml-2 cursor-pointer'></img>
+              <img src={Setting} className='h-[35px] w-[40px] ml-2 cursor-pointer' alt='setting'></img>
              </div>
             <div className='flex mt-5'>
               <p className='text-[16px] font-semibold'>{userPosts.length}<span className='font-normal text-[14px] ml-1'>Posts</span> </p>
