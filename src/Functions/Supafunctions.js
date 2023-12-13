@@ -118,6 +118,31 @@ export const UpdateLikes = async(likeData,conditionValue) =>{
     }
 }
 
+export const CreateComments = async(commentsData) =>{
+    try{
+        const {data,error} = await InsertData(TableNames.comments,commentsData)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+export const FetchComments = async() =>{
+    try{
+        const {data,error} = await FetchData(TableNames.comments)
+        if(error){
+            throw error;
+        }
+        return data;
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 export const DeletePost = async(conditionValue) =>{
     try{
         const {data,error} = await DeleteData(TableNames.user_post,conditionValue)

@@ -99,7 +99,7 @@ export const Profile = () => {
           {
             isProfile ?
             <div>
-            <div class="w-max relative">
+            <div className="w-max relative">
                   <img 
                   className={'h-[150px] w-[150px] rounded-full cursor-pointer'} alt='user_profile' src={user.profileimage} 
                   onClick={()=>{
@@ -108,9 +108,9 @@ export const Profile = () => {
                   ></img>
             </div>
             </div>:
-            <div class="relative">
-            <label for="profile" class="cursor-pointer flex items-center gap-4 px-6 py-4">
-                <div class="w-max relative">
+            <div className="relative">
+            <label for="profile" className="cursor-pointer flex items-center gap-4 px-6 py-4">
+                <div className="w-max relative">
                 <img className={`${imageList ? 'h-[150px] w-[150px] rounded-full' : "h-[150px] w-[150px]"}`} alt='user_profile' src={imageList !== undefined ? imageList : User}  ></img>
               </div>
             </label>
@@ -136,7 +136,7 @@ export const Profile = () => {
           </div>
         </div>
           <div className='mt-[3%] -ml-4'>
-            <img src={Highlight} alt='Highlight' className=''></img>
+            <img src={Highlight} alt='Highlight' className='  '></img>
           </div>
         <div className='mt-[5%] ml-5'>
           <Tabs

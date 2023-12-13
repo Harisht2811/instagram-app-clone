@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetNotUserPost, GetUserByEmail, GetUser } from '../../Functions/Supafunctions'
+import { GetNotUserPost, GetUserByEmail, GetUser, CreateComments, FetchComments } from '../../Functions/Supafunctions'
 import User from '../../Assests/user.png'
 import Threedots from '../../Assests/three-dots.png'
 import Heart from '../../Assests/heart-50.png'
@@ -18,7 +18,7 @@ export const Home = () => {
   const [currentUser, setCurrentuser] = useState('');
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState('');
-
+  const [postOfComments, setPostOfComments] = useState([]);
 
 
   const email = window.sessionStorage.getItem('email')
@@ -34,7 +34,13 @@ export const Home = () => {
       setProfile(profile_image)
       setFeed(feedData)
     })();
-  }, [email, currentUser, likes])
+    (async () => {
+      const commentsOfthePost = await FetchComments();
+      setPostOfComments(commentsOfthePost)
+    })();
+
+  
+  }, [email, currentUser, likes, postOfComments]);
 
   // const getLikes = async(id,post)=>{
   //    const likeData = await UpdateLikes(post.id);
@@ -57,8 +63,16 @@ export const Home = () => {
     setIsLiked(false)
     setLikes(newLike)
   }
-  console.log(likes)
 
+  const postComments = async (id) => {
+    let commentData = {
+      username: currentUser,
+      postcomments: comments,
+      postid: id,
+    }
+    await CreateComments(commentData);
+    setComments('');
+  }
   return (
     <div className=' absolute top-[50px] left-[600px] flex  w-[65%]'>
       <div>
@@ -73,7 +87,7 @@ export const Home = () => {
                 return (
                   <div className='block ml-4 '>
                     <div className='h-[60px] w-[60px] rounded-full cursor-pointer bg-gradient-to-r from-yellow-500 via-red-500   to-pink-700 p-[2.3px]'>
-                      <div class="h-[55px] w-[55px] bg-white rounded-full  p-[1.3px]">
+                      <div className="h-[55px] w-[55px] bg-white rounded-full  p-[1.3px]">
                         <img
                           key={index}
                           src={user.profileimage != null ? user.profileimage : User}
@@ -96,9 +110,11 @@ export const Home = () => {
         </div>
         {
           feed.map((data, index) => {
-            console.log(feed)
             return (
-              <div key={index} className={'h-[830px] w-[480px] border border-t-0 border-r-0 border-l-0 border-gray-300 mb-[2%] py-2'}>
+              <div key={index}
+                className='h-[830px] w-[480px] border border-t-0 border-r-0 border-l-0 border-gray-300 mb-[2%] py-2'
+
+              >
                 <div className='flex py-4 w-[100%]'>
                   <div className='flex w-[79%]'>
                     <div>
@@ -149,10 +165,30 @@ export const Home = () => {
                 <div className=' w-[100%] py-2'>
                   <p className='text-black text-left text-[16px] font-bold'>{data.username}<span className='text-black text-[16px] font-normal ml-2 '>{data.caption}</span></p>
                 </div>
+
+
+
+                {
+                  postOfComments.map((dataComments, i) => {
+
+                    return (
+                      <>
+                        <div className='flex' key={i}>
+
+                          <p className='text-left text-[14px] font-bold'>{data.id === dataComments.postid ? dataComments.username : ''}</p>
+                          <p className='text-left text-[14px] ml-2'>{data.id === dataComments.postid ? dataComments.postcomments : ''}</p>
+                        </div>
+                      </>
+
+                    )
+                  })
+                }
+
+
                 <div className='flex'>
-                  <input type='text' onChange={(e) => { setComments(e.target.value) }} className='w-[480px] py-4 h-[10px] text-left outline-none text-[16px]' placeholder='Add a Comment...'></input>
+                  <input type='text' value={comments} onChange={(e) => { setComments(e.target.value) }} className='w-[480px] py-4 h-[10px] text-left outline-none text-[16px]' placeholder='Add a Comment...'></input>
                   {
-                    comments.length > 0 && <p className='text-[14px] font-bold text-blue-500 cursor-pointer'>Post</p>
+                    comments.length > 0 && <p className='text-[14px] font-bold text-blue-500 cursor-pointer' onClick={() => { postComments(data.id) }}>Post</p>
                   }
                 </div>
 
@@ -161,7 +197,7 @@ export const Home = () => {
           })
         }
       </div>
-    
+
       <div className='mt-2 ml-[7%] w-[75%]'>
         <div className='flex w-[100%]'>
           {
@@ -193,26 +229,26 @@ export const Home = () => {
 
         </div>
         <div className='flex mt-8 '>
-        <p className='w-[50%] text-left text-[16px] text-gray-500 font-bold'>Suggested for you</p>
-        <p className='text-left w-[50%] font-bold text-[12px]'>See All</p>
-      </div>
+          <p className='w-[50%] text-left text-[16px] text-gray-500 font-bold'>Suggested for you</p>
+          <p className='text-left w-[50%] font-bold text-[12px]'>See All</p>
+        </div>
         <div className='block mt-8 '>
           {
-            Profile.map((follwusers,ind)=>{
-              if(follwusers.username!==currentUser){
-                return(
-                  <div className='flex w-[100%]  mb-4'>
-                      <div className='flex w-[50%]'>
-                        <img src={follwusers.profileimage!=null?follwusers.profileimage:User}
+            Profile.map((follwusers, i) => {
+              if (follwusers.username !== currentUser) {
+                return (
+                  <div className='flex w-[100%]  mb-4' key={i}>
+                    <div className='flex w-[50%]'>
+                      <img src={follwusers.profileimage != null ? follwusers.profileimage : User}
                         className='h-[40px] w-[40px] rounded-full cursor-pointer'
                         alt='follwusers'
-                        ></img>
-                         <p className='ml-2 mt-2 text-[12px] font-semibold'>{follwusers.username}</p>
-                        </div>
-                       
-                      <div className='w-[50%]'>
-                        <p className='text-blue-400 font-bold text-[14px] mt-2 text-left cursor-pointer hover:text-blue-900'>Follow</p>
-                        </div>
+                      ></img>
+                      <p className='ml-2 mt-2 text-[12px] font-semibold'>{follwusers.username}</p>
+                    </div>
+
+                    <div className='w-[50%]'>
+                      <p className='text-blue-400 font-bold text-[14px] mt-2 text-left cursor-pointer hover:text-blue-900'>Follow</p>
+                    </div>
                   </div>
                 )
               }
@@ -220,7 +256,7 @@ export const Home = () => {
             })
           }
         </div>
-       </div>
+      </div>
 
     </div >
 

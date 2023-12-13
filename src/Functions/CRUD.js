@@ -21,6 +21,7 @@ export const FetchUserImage = (table, username) => {
 }
 
 export const InsertData = async (table, data) => {
+    console.log(data)
     return await supabase.from(table).insert(data).select();
 }
 
